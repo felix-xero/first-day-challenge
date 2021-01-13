@@ -1,40 +1,5 @@
-const puppeteer = require('puppeteer');
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true, executionTimeout: 10000 });
-
-/*
-(async () => {
-  const browser = await puppeteer.launch({ headless:false });
-  const page = await browser.newPage();
-  await page.goto('https://google.com');
-
-  // Get the "viewport" of the page, as reported by the page.
-  const dimensions = await page.evaluate(() => {
-    return {
-      width: document.documentElement.clientWidth,
-      height: document.documentElement.clientHeight,
-      deviceScaleFactor: window.devicePixelRatio
-    };
-  });
-
-  console.log('Dimensions:', dimensions);
-
-  await browser.close();
-})();
-*/
-/*
-nightmare
-  .goto('https://duckduckgo.com')
-  .type('#search_form_input_homepage', 'github nightmare')
-  .click('#search_button_homepage')
-  .wait('#r1-0 a.result__a')
-  .evaluate(() => document.querySelector('#r1-0 a.result__a').innerHTML)
-  .end()
-  .then(console.log)
-  .catch(error => {
-    console.error('Search failed:', error)
-  })
-*/
 
 let data = nightmare
   .goto('https://google.com')
