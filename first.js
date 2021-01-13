@@ -42,8 +42,11 @@ let data = nightmare
   .click('.gNO89b')
   .click('a[href*="datatables.net"]')
   .evaluate(() => {
-    let arr = [];
-    let pageArr = Array.from(document.querySelectorAll('tr.even td,tr.odd td')).map(row => row.innerHTML);
+    let arr = []; // store scraped data
+    let pageArr = []; // temporary data from scraping various selectors
+    pageArr = Array.from(document.querySelectorAll('tr[role="row"] th')).map(object => object.innerHTML);
+    arr = arr.concat(pageArr);
+    pageArr = Array.from(document.querySelectorAll('tr.even td,tr.odd td')).map(row => row.innerHTML);
     arr = arr.concat(pageArr);
 
     while (document.querySelector('#example_next.paginate_button.next[tabindex="0"]')) {
@@ -63,7 +66,7 @@ let data = nightmare
     }
     // Forming the csv file
     let csv = ""; // Replace with the headers separated by ,
-    let row = [" "]
+    let row = [""]
     while (row.length != 0) {
       row = filtered.splice(0, 6);
       csv += row.join(',') + "\n";
